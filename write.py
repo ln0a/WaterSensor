@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Tag can be read at max 20mm from reader 
+
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
