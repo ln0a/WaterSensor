@@ -6,14 +6,16 @@ import led
 
 # Water sample RFID tag labels
 sample_tags = {
-    632153281131: 'videos/algae.mp4', 
-    975930237824: 'videos/clean.mp4', 
+    632153281131: 'videos/algae.mp4',
+    975930237824: 'videos/clean.mp4',
     842353281731: 'videos/pollution.mp4'}
+
 
 # Read RFID tag and lookup tags
 def read(reader):
     id, label = reader.read()
     lookup_rfid_tag(id)
+
 
 # Check if tag id is stored in tag dictionary
 # and play associated video file
