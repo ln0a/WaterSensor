@@ -21,3 +21,8 @@ Connect RFID reader to Raspberry Pi IO pins according to [this guide](https://pi
 
 Run the read / write test with:
 `python3 src/setup_test/write.py` and `python3 src/setup_test/read.py`
+
+
+## NeoPixel Ring Setup
+
+Follow [this guide](https://cdn-learn.adafruit.com/downloads/pdf/neopixels-on-raspberry-pi.pdf) to install custom libraries for NeoPixel on Rasperry Pi.
