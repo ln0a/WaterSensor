@@ -2,7 +2,7 @@
 
 `sudo apt update && sudo apt upgrade`
 
-`sudo apt install python3-dev python3-pip python-vlc vlc`
+`sudo apt install python3-dev python3-pip python3-vlc vlc`
 
 `sudo pip3 install spidev`
 
