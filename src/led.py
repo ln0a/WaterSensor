@@ -39,7 +39,8 @@ def rotate(r, g, b, pause):
         pixels.show()
 
 
-# Returns array of positions based on specific position and quantity
+# Returns array of positions within a 0 - max indexed circle
+# Accepts a specific position, circle max length and group size
 def group(position, max, group_size):
     # Initialise empty list
     position_list = [None] * group_size
