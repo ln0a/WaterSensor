@@ -4,6 +4,7 @@ from time import sleep
 import board
 import neopixel
 
+
 led_quantity = 24
 pixels = neopixel.NeoPixel(board.D18, led_quantity,
                            brightness=0.1, auto_write=False)
