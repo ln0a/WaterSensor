@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from sleep import time
+import time
 import vlc
 
 
