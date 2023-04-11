@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import time
+from time import sleep
 import board
 import neopixel
 
