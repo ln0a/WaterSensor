@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import time
+from time import sleep
 import vlc
 
 
@@ -8,6 +8,7 @@ def play(source):
     vlc_instance = vlc.Instance()
     player = vlc_instance.media_player_new()
     media = vlc_instance.media_new(source)
+    player.set_fullscreen(True)
     player.set_media(media)
     player.play()
 
