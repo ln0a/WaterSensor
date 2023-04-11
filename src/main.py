@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from time import sleep
+from sleep import time
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 import rfid
