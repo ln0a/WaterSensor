@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import time
 import threading
 import video
 import led
@@ -13,23 +14,20 @@ sample_tags = {
 
 
 # Read RFID tag and lookup tags
-def read(reader):
+def read(reader, player):
     id, label = reader.read()
-    lookup_rfid_tag(id)
+
+    if lookup_rfid_tag(id):
+        player.addVideo(sample_tags[id])
+        player.play()
+        player.wait_stop()
 
 
 # Check if tag id is stored in tag dictionary
 # and play associated video file
 def lookup_rfid_tag(id):
     if id in sample_tags:
-        # print(sample_tags[id])
-        t1 = threading.Thread(target=led.rotate, args=(255, 0, 0, 0.03,))
-        t2 = threading.Thread(target=video.play_wait_close, args=(sample_tags[id],))
-
-        t1.start()
-        t2.start()
-
-        t1.join()
-        t2.join()
+        return True
     else:
         print('No tag found')
+        return False

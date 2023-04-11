@@ -15,21 +15,28 @@ GPIO.setwarnings(False)
 # Initialise RFID reader
 reader = SimpleMFRC522()
 
+# Initialise video player
+player = video.VLC()
 
 # Sensor reading loop
 try:
     while True:
-        t1 = threading.Thread(target=led.rotate, args=(0, 0, 255, 0.1,))
-        t2 = threading.Thread(target=rfid.read, args=(reader,))
+        # t1 = threading.Thread(target=led.rotate, args=(0, 0, 255, 0.1,))
+        # t2 = threading.Thread(target=rfid.read, args=(reader,))
 
-        t1.start()
-        t2.start()
+        # t1.start()
+        # t2.start()
 
-        t1.join()
-        t2.join()
+        # t1.join()
+        # t2.join()
 
-        time.sleep(2)
+        player.addVideo("videos/pollution.mp4")
+        player.play()
+
+        rfid.read(reader, player)
+
 except KeyboardInterrupt:
     GPIO.cleanup()
+
 finally:
     GPIO.cleanup()

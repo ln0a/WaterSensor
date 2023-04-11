@@ -4,25 +4,25 @@ import time
 import vlc
 
 
-def play(source):
-    vlc_instance = vlc.Instance()
-    player = vlc_instance.media_player_new()
-    media = vlc_instance.media_new(source)
-    player.set_fullscreen(True)
-    player.set_media(media)
-    player.play()
+class VLC:
+    def __init__(self):
+        self.Instance = vlc.Instance()
+        self.Player = self.Instance.media_player_new()
+        self.Player.set_fullscreen(True)
 
-
-def play_wait_close(source):
-    play(source)
-
-    time.sleep(1.5)
-    duration = player.get_length() / 1000
-    time.sleep(duration)
-
-    print("Video finished")
-    # play_blank()
-
-
-def play_blank():
-    play("videos/block.mp4")
+    def addVideo(self, source):
+        self.Media = self.Instance.media_new(source)
+        self.Player.set_media(self.Media)
+    def play(self):
+        self.Player.play()
+    def next(self):
+        self.Player.next()
+    def previous(self):
+        self.Player.previous()
+    def wait_stop(self):
+        time.sleep(2)
+        duration = self.Player.get_length() / 1000
+        time.sleep(duration)
+        self.Player.stop()
+    def stop(self):
+        self.Player.stop()
