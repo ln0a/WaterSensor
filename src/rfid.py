@@ -34,4 +34,5 @@ def lookup_rfid_tag(id):
         return False
 
 def print_tag(id):
+    print("")
     print("RFID tag " + str(id) + ": playing " + sample_tags[id])
