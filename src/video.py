@@ -18,10 +18,13 @@ class VLC(object):
     def play(self):
         self.Player.play()
 
-    def wait_stop(self):
+    def wait(self):
         time.sleep(2)
         duration = self.Player.get_length() / 1000
         time.sleep(duration)
+
+    def wait_stop(self):
+        self.wait()
         self.Player.stop()
 
     def stop(self):

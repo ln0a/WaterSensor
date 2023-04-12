@@ -37,7 +37,7 @@ try:
 
             player.addVideo(rfid.read(reader))
             player.play()
-            player.wait_stop()
+            player.wait()
 
             led.speed_reset()
             led.color_reset()
