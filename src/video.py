@@ -2,7 +2,6 @@
 
 import time
 import vlc
-import rfid
 
 
 class VLC(object):
@@ -18,12 +17,6 @@ class VLC(object):
 
     def play(self):
         self.Player.play()
-
-    def next(self):
-        self.Player.next()
-
-    def previous(self):
-        self.Player.previous()
 
     def wait_stop(self):
         time.sleep(2)
