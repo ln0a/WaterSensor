@@ -4,7 +4,7 @@ import time
 import vlc
 
 
-class VLC:
+class VLC(object):
 
     def __init__(self):
         self.Instance = vlc.Instance()
