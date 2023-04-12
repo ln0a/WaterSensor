@@ -2,6 +2,7 @@
 
 import time
 import vlc
+import rfid
 
 
 class VLC(object):

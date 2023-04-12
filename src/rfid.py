@@ -13,26 +13,34 @@ sample_tags = {
     842353281731: 'videos/pollution.mp4'}
 
 
-# Read RFID tag and lookup tags
-def read(reader, player):
-    id, label = reader.read()
+class RFID(object):
 
-    if lookup_rfid_tag(id):
-        print_tag(id)
-        player.addVideo(sample_tags[id])
-        player.play()
-        player.wait_stop()
+    # Read RFID tag and lookup tags
+    def read(self, reader, player, led):
+        id, label = reader.read()
 
+        if self.lookup_rfid_tag(id):
+            self.print_tag(id)
 
-# Check if tag id is stored in tag dictionary
-# and play associated video file
-def lookup_rfid_tag(id):
-    if id in sample_tags:
-        return True
-    else:
-        print('No tag found')
-        return False
+            led.speed_change(0.03)
+            led.color_change((0, 255, 0))
 
-def print_tag(id):
-    print("")
-    print("RFID tag " + str(id) + ": playing " + sample_tags[id])
+            player.addVideo(sample_tags[id])
+            player.play()
+            player.wait_stop()
+
+            led.speed_reset()
+            led.color_reset()
+
+    # Check if tag id is stored in tag dictionary
+    # and play associated video file
+    def lookup_rfid_tag(self, tag):
+        if tag in sample_tags:
+            return True
+        else:
+            print('No tag found')
+            return False
+
+    def print_tag(self, id):
+        print("")
+        print("RFID tag " + str(id) + ": playing " + sample_tags[id])
