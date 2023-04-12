@@ -18,6 +18,7 @@ def read(reader, player):
     id, label = reader.read()
 
     if lookup_rfid_tag(id):
+        print_tag(id)
         player.addVideo(sample_tags[id])
         player.play()
         player.wait_stop()
@@ -31,3 +32,6 @@ def lookup_rfid_tag(id):
     else:
         print('No tag found')
         return False
+
+def print_tag(id):
+    print("RFID tag " + str(id) + ": playing " + sample_tags[id])
