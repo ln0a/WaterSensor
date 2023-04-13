@@ -28,9 +28,6 @@ class RFID(object):
     def lookup_rfid_tag(self, tag):
         if tag in sample_tags:
             return True
-        # else:
-        #     print('No tag found')
-        #     return False
 
     def print_tag(self, id):
         print("")
