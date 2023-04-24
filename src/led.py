@@ -39,7 +39,7 @@ class LED(object):
 
     def rotate(self):
         i = 0
-        size = 4
+        size = 8
 
         while True:
             self.blank()
