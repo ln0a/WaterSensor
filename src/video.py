@@ -27,5 +27,10 @@ class VLC(object):
         self.wait()
         self.Player.stop()
 
+    def loop(self):
+        self.play()
+        self.wait_stop()
+        self.loop()
+
     def stop(self):
         self.Player.stop()
