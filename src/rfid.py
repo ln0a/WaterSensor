@@ -8,9 +8,9 @@ import led
 
 # Water sample RFID tag labels
 sample_tags = {
-    632153281131: "videos/algae.mp4",
-    975930237824: "videos/clean.mp4",
-    842353281731: "videos/pollution.mp4"}
+    632153281131: "videos/Sewage.mp4",
+    975930237824: "videos/Flooding.mp4",
+    842353281731: "videos/Pollution.mp4"}
 
 
 class RFID(object):
