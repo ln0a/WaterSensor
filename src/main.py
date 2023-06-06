@@ -30,7 +30,7 @@ try:
     while True:
         os.popen("killall vlc")
         time.sleep(2)
-        os.popen("cvlc --loop --fullscreen ~/WaterSensor/videos/hold.mp4")
+        os.popen("cvlc --loop --fullscreen /home/e/WaterSensor/videos/hold.mp4")
 
         if rfid.read(reader):
             led.speed_change(0.02)
@@ -40,7 +40,7 @@ try:
 
             os.popen("killall vlc")
             time.sleep(2)
-            os.popen("cvlc --fullscreen ~/WaterSensor/videos/" + video.files[id] + ".mp4")
+            os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/" + video.files[id] + ".mp4")
 
             time.sleep(20)
             

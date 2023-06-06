@@ -26,3 +26,9 @@ Run the read / write test with:
 ## NeoPixel Ring Setup
 
 Follow [this guide](https://cdn-learn.adafruit.com/downloads/pdf/neopixels-on-raspberry-pi.pdf) to install custom libraries for NeoPixel on Rasperry Pi.
+
+
+## Run vlc as root
+
+
+`sudo sed -i 's/geteuid/getppid/' /usr/bin/vlc`
