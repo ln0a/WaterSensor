@@ -6,6 +6,7 @@ from threading import Thread, Timer
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 import rfid
+from video import Video
 from led import LED
 
 
@@ -18,6 +19,7 @@ reader = SimpleMFRC522()
 # Initialise control objects
 rfid = rfid.RFID()
 led = LED()
+video = Video()
 
 thread_led = Thread(target=led.rotate)
 thread_led.start()
@@ -28,15 +30,17 @@ try:
     while True:
         os.popen("killall vlc")
         time.sleep(2)
-        os.popen("cvlc --loop --fullscreen ~/WaterSensor/videos/Hold.mp4")
+        os.popen("cvlc --loop --fullscreen ~/WaterSensor/videos/hold.mp4")
 
         if rfid.read(reader):
             led.speed_change(0.02)
             led.color_change((0, 255, 0))
 
+            id = rfid.read(reader)
+
             os.popen("killall vlc")
             time.sleep(2)
-            os.popen("cvlc --fullscreen ~/WaterSensor/videos/Flooding60.mp4")
+            os.popen("cvlc --fullscreen ~/WaterSensor/videos/" + video.files[id] + ".mp4")
 
             time.sleep(20)
             
