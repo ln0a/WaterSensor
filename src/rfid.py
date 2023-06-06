@@ -2,7 +2,6 @@
 
 import time
 import threading
-import video
 import led
 
 

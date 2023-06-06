@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 
 import time
+import os
+from threading import Thread, Timer
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 import rfid
-from threading import Thread, Timer
-from video import VLC
 from led import LED
-import vlc
-import os
 
 
 # Hide all GPIO warnings
