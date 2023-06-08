@@ -21,7 +21,9 @@ class RFID(object):
         if self.lookup_rfid_tag(id):
             # self.print_tag(id)
             # return sample_tags[id]
-            return id
+            clean_label = "".join(label.split())
+            print("label: " + clean_label + ".")
+            return clean_label
 
     # Check if tag id is stored in tag dictionary
     # and play associated video file
