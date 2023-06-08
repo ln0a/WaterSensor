@@ -5,9 +5,9 @@ import os
 from threading import Thread, Timer
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
+from serial_controller import SerialController
 import rfid
 from video import Video
-from led import LED
 
 
 # Hide all GPIO warnings
@@ -17,41 +17,37 @@ GPIO.setwarnings(False)
 reader = SimpleMFRC522()
 
 # Initialise control objects
+serial = SerialController()
 rfid = rfid.RFID()
-led = LED()
 video = Video()
-
-thread_led = Thread(target=led.rotate)
-thread_led.start()
 
 
 # Sensor reading loop
 try:
     while True:
+        serial.ser.write(b'0')
+
         os.popen("killall vlc")
         time.sleep(2)
-        os.popen("cvlc --loop --fullscreen /home/e/WaterSensor/videos/hold.mp4")
+        os.popen("cvlc --repeat --fullscreen /home/e/WaterSensor/videos/hold.mp4")
 
         if rfid.read(reader):
-            led.speed_change(0.02)
-            led.color_change((0, 255, 0))
+            serial.ser.write(b'1')
 
-            id = rfid.read(reader)
+            label = rfid.read(reader)
 
             os.popen("killall vlc")
             time.sleep(2)
-            os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/" + video.files[id] + ".mp4")
+            os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/" + label + ".mp4")
 
-            time.sleep(20)
-            
-            led.speed_reset()
-            led.color_reset()
+            time.sleep(video.files[label] - 32)
+            serial.ser.write(b'2')
+            time.sleep(32)
 
 
 except KeyboardInterrupt:
-    thread_led.join()
     GPIO.cleanup()
 
+
 finally:
-    thread_led.join()
     GPIO.cleanup()
