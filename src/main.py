@@ -34,13 +34,13 @@ try:
         if rfid.read(reader):
             serial.ser.write(b'1')
 
-            label = rfid.read(reader)
+            id = rfid.read(reader)
 
             os.popen("killall vlc")
             time.sleep(2)
-            os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/" + label + ".mp4")
+            os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/" + video.files[id][0] + ".mp4")
 
-            time.sleep(video.files[label] - 32)
+            time.sleep(video.files[id][1] - 32)
             serial.ser.write(b'2')
             time.sleep(32)
 

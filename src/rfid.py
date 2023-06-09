@@ -2,14 +2,18 @@
 
 import time
 import threading
-import led
 
 
 # Water sample RFID tag labels
+# sample_tags = {
+#     632153281131: "flooding",
+#     975930237824: "pollution",
+#     842353281731: ""}
 sample_tags = {
-    632153281131: "flooding",
-    975930237824: "pollution",
-    842353281731: ""}
+    584191392048: ["sewage", 295],
+    584191785278: ["pollution", 295],
+    584192178468: ["flooding", 295]
+}
 
 
 class RFID(object):
@@ -23,7 +27,8 @@ class RFID(object):
             # return sample_tags[id]
             clean_label = "".join(label.split())
             print("label: " + clean_label + ".")
-            return clean_label
+            # return clean_label
+            return id
 
     # Check if tag id is stored in tag dictionary
     # and play associated video file

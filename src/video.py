@@ -5,6 +5,7 @@ class Video(object):
 
     def __init__(self):
         self.files = {
-            "sewage": 295,
-            "pollution": 20
+            584191392048: ["sewage", 295],
+            584191785278: ["pollution", 295],
+            584192178468: ["flooding", 295]
         }
