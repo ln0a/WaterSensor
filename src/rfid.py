@@ -11,12 +11,15 @@ import threading
 #     842353281731: ""}
 sample_tags = {
     584191392048: ["sewage", 295],
-    584191785278: ["pollution", 295],
-    584192178468: ["flooding", 295]
+    584191785278: ["pollution", 283],
+    584192178468: ["flooding", 299]
 }
 
 
 class RFID(object):
+    def __init__(self):
+        self.previous_tag = 0
+        # self.previous_tag = 584191785278
 
     # Read RFID tag and lookup tags
     def read(self, reader):
@@ -26,7 +29,7 @@ class RFID(object):
             # self.print_tag(id)
             # return sample_tags[id]
             clean_label = "".join(label.split())
-            print("label: " + clean_label + ".")
+            # print("label: " + clean_label + ".")
             # return clean_label
             return id
 
@@ -39,3 +42,6 @@ class RFID(object):
     def print_tag(self, id):
         print("")
         print("RFID tag " + str(id) + ": playing " + sample_tags[id])
+
+    def clear_tag(self):
+        self.previous_tag = 0

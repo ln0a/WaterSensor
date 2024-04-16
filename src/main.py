@@ -21,6 +21,7 @@ serial = SerialController()
 rfid = rfid.RFID()
 video = Video()
 
+initial_loop = True
 
 # Sensor reading loop
 try:
@@ -31,18 +32,37 @@ try:
         time.sleep(2)
         os.popen("cvlc --repeat --fullscreen /home/e/WaterSensor/videos/hold.mp4")
 
-        if rfid.read(reader):
-            serial.ser.write(b'1')
+        # Reset tag read toggle
+        tag_read = False
 
+        while tag_read == False:
             id = rfid.read(reader)
 
-            os.popen("killall vlc")
-            time.sleep(2)
-            os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/" + video.files[id][0] + ".mp4")
+            if (id != rfid.previous_tag):
+                if initial_loop:
+                    initial_loop = False
+                else:
+                    tag_timer.cancel()
 
-            time.sleep(video.files[id][1] - 32)
-            serial.ser.write(b'2')
-            time.sleep(32)
+                rfid.previous_tag = id
+
+                serial.ser.write(b'1')
+
+                os.popen("killall vlc")
+                time.sleep(2)
+                os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/" + video.files[id][0] + ".mp4")
+
+                time.sleep(video.files[id][1] - 32)
+                serial.ser.write(b'2')
+                time.sleep(32)
+
+                # Start timer thread to clear previous tag after 30s
+                tag_timer = Timer(30, rfid.clear_tag)
+                tag_timer.start()
+
+                tag_read == True
+            
+                break
 
 
 except KeyboardInterrupt:

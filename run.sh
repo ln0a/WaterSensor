@@ -1,3 +1,3 @@
 #! /usr/bin/env bash
 
-unclutter -idle 0.1 -root & (sxiv -a image/loop-infinite.gif -fb -z 400 & sudo python3 src/main.py)
+unclutter -idle 0.1 -root & (feh -F /home/e/WaterSensor/img/blank.png & python3 /home/e/WaterSensor/src/main.py)
