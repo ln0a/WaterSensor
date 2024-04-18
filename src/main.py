@@ -12,6 +12,7 @@ from video import Video
 
 # Hide all GPIO warnings
 GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
 
 # Initialise RFID reader
 reader = SimpleMFRC522()
@@ -20,8 +21,15 @@ reader = SimpleMFRC522()
 serial = SerialController()
 rfid = rfid.RFID()
 video = Video()
+switch = 17
+GPIO.setup(switch, GPIO.IN)
 
 initial_loop = True
+
+if (GPIO.input(switch)):
+    print("1")
+elif (not GPIO.input(switch)):
+    print("0")
 
 # Sensor reading loop
 try:
