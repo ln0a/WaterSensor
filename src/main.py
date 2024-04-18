@@ -27,9 +27,10 @@ GPIO.setup(switch, GPIO.IN)
 initial_loop = True
 
 if (GPIO.input(switch)):
-    print("1")
-elif (not GPIO.input(switch)):
     print("0")
+elif (not GPIO.input(switch)):
+    print("1")
+
 
 # Sensor reading loop
 try:
