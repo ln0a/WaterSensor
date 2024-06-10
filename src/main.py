@@ -32,31 +32,14 @@ if (GPIO.input(switch)):
     print("LOOP MODE")
 
     while True:
-        serial.ser.write(b'0')
+        video.hold_play(serial)
+        video.video_play(584192178468, serial)
 
-        os.popen("killall vlc")
-        time.sleep(2)
-        os.popen("cvlc --repeat --fullscreen /home/e/WaterSensor/videos/hold.mp4")
+        video.hold_play(serial)
+        video.video_play(584191785278, serial)
 
-        os.popen("killall vlc")
-        time.sleep(2)
-        os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/flooding.mp4")
-
-        os.popen("killall vlc")
-        time.sleep(2)
-        os.popen("cvlc --repeat --fullscreen /home/e/WaterSensor/videos/hold.mp4")
-
-        os.popen("killall vlc")
-        time.sleep(2)
-        os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/pollution.mp4")
-
-        os.popen("killall vlc")
-        time.sleep(2)
-        os.popen("cvlc --repeat --fullscreen /home/e/WaterSensor/videos/hold.mp4")
-
-        os.popen("killall vlc")
-        time.sleep(2)
-        os.popen("cvlc --fullscreen /home/e/WaterSensor/videos/sewage.mp4")
+        video.hold_play(serial)
+        video.video_play(584191392048, serial)
 
 elif (not GPIO.input(switch)):
     # Switch in 1 state
